@@ -1,9 +1,10 @@
 #include <iostream>
 #include <string>
+#include <sstream>
 using namespace std;
 
 //Global variables
-int command = 0;
+string command = 0;
 bool done = false;
 string currentPassword;
 
@@ -17,12 +18,23 @@ void menu()
 	cout << "3. Encrypt the current password.		|" << endl;
 	cout << "4. Decrypt the current password.		|" << endl;
 	cout << "5. Exit the program.				|" << endl;
+	cout << "HELP: Display this help menu.			|" << endl;
 	cout << "-------------------------------------------------" << endl;
 	cout << "Please enter a command (1-5): " << endl;
 	cout << ">> ";
 	cin >> command;
 
-	while (std::cin.fail()) {
+	//Check if input is valid or help
+	if (command == "1" || command == "2" || command == "3" || command == "4" || command == "5")
+	{
+
+	}
+	else if ((command.compare("HELP")) || (command.compare == "help"))
+	{
+		menu();
+	}
+	else
+	{
 		cout << "ERROR:" << endl;
 		cout << "Enter a command (1-5): " << endl;
 		cout << ">> ";
@@ -30,6 +42,18 @@ void menu()
 		cin.ignore(256, '\n');
 		cin >> command;
 	}
+}
+
+/*
+		while (std::cin.fail()) {
+			cout << "ERROR:" << endl;
+			cout << "Enter a command (1-5): " << endl;
+			cout << ">> ";
+			cin.clear();
+			cin.ignore(256, '\n');
+			cin >> command;
+		}
+*/
 }
 
 //Method to get a new password from the user
@@ -54,20 +78,27 @@ void decrypt(string encryptedPassword)
 
 int main()
 {
+	stringstream convert(command);
+	int C = 0;
+	
 	cout << "This program can encrypt and decrypt passwords." << endl;
+
+	menu();
 
 	while (!done)
 	{
-		menu();
-		
-		switch (command)
+		cout << "Please enter a command (1-5): " << endl;
+		cout << ">> ";
+		cin >> command;
+		convert >> C;
+
+		switch (C)
 		{
 			case 1:
 			{
 				cout << "New password: ";
 				cin >> currentPassword;
 				cout << endl;
-				break;
 			}
 
 			case 2:
@@ -105,8 +136,3 @@ int main()
 	system("pause");
 	return 0;
 }
-
-//NOTE:
-// For improvement, add a 'help' option that pulls
-// up the commands window for reference, instead of
-// it popping up after every command
