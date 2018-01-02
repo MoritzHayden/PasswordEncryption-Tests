@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include <sstream>
 using namespace std;
 
 //Global variables
@@ -34,13 +33,15 @@ void getNewPassword()
 //Method to encrypt password
 void encrypt(string decryptedPassword)
 {
+	int passLen = decryptedPassword.length();
 
+	cout << "This option isn't available yet." << endl << endl;
 }
 
 //Method to decrypt password
 void decrypt(string encryptedPassword)
 {
-
+	cout << "This option isn't available yet." << endl << endl;
 }
 
 //Driver
@@ -97,15 +98,16 @@ void main()
 			}
 			else
 			{
-				cout << "ERROR: INVALID INPUT" << endl;
+				cout << "ERROR: INVALID INPUT" << endl << endl;
 			}
 		}
 		else
 		{
-			cout << "ERROR: INVALID INPUT" << endl;
+			cout << "ERROR: INVALID INPUT" << endl << endl;
 		}
 	}
 }
 
-// Notes for improvement
+// TODO
 // 1. Make command checks (line 61) case-insensitive
+// 2. Add more encryption methods
