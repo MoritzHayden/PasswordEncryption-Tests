@@ -9,4 +9,5 @@ This program will test a variety of password encryption techniques.
 4. Decrypt the current password.
 
 EXIT: Exit the program.
+
 HELP: Display this help menu.
