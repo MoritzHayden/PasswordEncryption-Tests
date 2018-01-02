@@ -4,11 +4,12 @@
 using namespace std;
 
 //Global variables
-string command = 0;
+string command;
+int commandInt = 0;
 bool done = false;
 string currentPassword;
 
-//User interface
+//Help menu to show commands
 void menu()
 {
 	cout << "-------------------------------------------------" << endl;
@@ -17,43 +18,9 @@ void menu()
 	cout << "2. Display the current password.		|" << endl;
 	cout << "3. Encrypt the current password.		|" << endl;
 	cout << "4. Decrypt the current password.		|" << endl;
-	cout << "5. Exit the program.				|" << endl;
+	cout << "EXIT: Exit the program.				|" << endl;
 	cout << "HELP: Display this help menu.			|" << endl;
-	cout << "-------------------------------------------------" << endl;
-	cout << "Please enter a command (1-5): " << endl;
-	cout << ">> ";
-	cin >> command;
-
-	//Check if input is valid or help
-	if (command == "1" || command == "2" || command == "3" || command == "4" || command == "5")
-	{
-
-	}
-	else if ((command.compare("HELP")) || (command.compare == "help"))
-	{
-		menu();
-	}
-	else
-	{
-		cout << "ERROR:" << endl;
-		cout << "Enter a command (1-5): " << endl;
-		cout << ">> ";
-		cin.clear();
-		cin.ignore(256, '\n');
-		cin >> command;
-	}
-}
-
-/*
-		while (std::cin.fail()) {
-			cout << "ERROR:" << endl;
-			cout << "Enter a command (1-5): " << endl;
-			cout << ">> ";
-			cin.clear();
-			cin.ignore(256, '\n');
-			cin >> command;
-		}
-*/
+	cout << "-------------------------------------------------" << endl << endl;
 }
 
 //Method to get a new password from the user
@@ -76,63 +43,69 @@ void decrypt(string encryptedPassword)
 
 }
 
-int main()
+//Driver
+void main()
 {
-	stringstream convert(command);
-	int C = 0;
-	
+	//Initiate program
 	cout << "This program can encrypt and decrypt passwords." << endl;
-
 	menu();
 
+	//Test for the exit case
 	while (!done)
 	{
-		cout << "Please enter a command (1-5): " << endl;
+		//Obtain user input
 		cout << ">> ";
 		cin >> command;
-		convert >> C;
 
-		switch (C)
+		//Check user input
+		if (command == "help" || command == "HELP" || command == "Help")
 		{
-			case 1:
+			//Display command window
+			menu();
+		}
+		else if (command == "exit" || command == "EXIT" || command == "Exit")
+		{
+			//Terminate program
+			done = true;
+		}
+		else if (command == "1" || command == "2" || command == "3"
+								|| command == "4" || command == "5")
+		{
+			//Convert input to int
+			commandInt = stoi(command);
+			if (commandInt == 1)
 			{
+				//Store new password
 				cout << "New password: ";
 				cin >> currentPassword;
 				cout << endl;
 			}
-
-			case 2:
+			else if (commandInt == 2)
 			{
+				//Return current password
 				cout << "Current password: " << currentPassword << endl << endl;
-				break;
 			}
-
-			case 3:
+			else if (commandInt == 3)
 			{
+				//Encrypt current password
 				encrypt(currentPassword);
-				break;
 			}
-
-			case 4:
+			else if (commandInt == 4)
 			{
+				//Decrypt current password
 				decrypt(currentPassword);
-				break;
 			}
-
-			case 5:
+			else
 			{
-				done = true;
-				break;
-			}
-
-			default:
-			{
-				cout << "ERROR: INVALID IMPUT" << endl << endl;
-				break;
+				cout << "ERROR: INVALID INPUT" << endl;
 			}
 		}
+		else
+		{
+			cout << "ERROR: INVALID INPUT" << endl;
+		}
 	}
-	
-	system("pause");
-	return 0;
 }
+
+// Notes for improvement
+// 1. Make command checks (line 61) case-insensitive
