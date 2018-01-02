@@ -8,4 +8,5 @@ This program will test a variety of password encryption techniques.
 3. Encrypt the current password.
 4. Decrypt the current password.
 5. Exit the program.
+
 HELP: Display this help menu.
