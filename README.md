@@ -1,6 +1,7 @@
 # PasswordEncryption-Tests
 This program will test a variety of password encryption techniques.
 
+
 // COMMANDS //
 1. Enter a new password to be manipulated.
 2. Display the current password.
