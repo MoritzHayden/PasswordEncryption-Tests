@@ -35,7 +35,8 @@ void getNewPassword()
 void encrypt(string decryptedPassword)
 {
 	int passLen = decryptedPassword.length();
-	vector<int> passVector;
+	//Change to vector<char> for ASCII conversion
+	vector<char> passVector;
 
 	//Insert password into vector
 	for (int i = 0; i < passLen; i++)
@@ -43,19 +44,48 @@ void encrypt(string decryptedPassword)
 		passVector.push_back(decryptedPassword.at(i));
 	}
 
-	//Print password vector
+	//Begin encryption
 	for (int i = 0; i < passLen; i++)
 	{
-		cout << passVector.at(i) << endl;
+		passVector.at(i) = passVector.at(i) + 1;
 	}
 
-	cout << "This option isn't available yet." << endl << endl;
+	//Store result in currentPassword
+	for (int i = 0; i < passLen; i++)
+	{
+		currentPassword.at(i) = passVector.at(i);
+	}
+	//Output result
+	cout << "Encrypted password: " << currentPassword << endl << endl;
 }
 
 //Method to decrypt password
 void decrypt(string encryptedPassword)
 {
-	cout << "This option isn't available yet." << endl << endl;
+	int passLen = encryptedPassword.length();
+	//Change to vector<char> for ASCII conversion
+	vector<char> passVector;
+
+	//Insert password into vector
+	for (int i = 0; i < passLen; i++)
+	{
+		passVector.push_back(encryptedPassword.at(i));
+	}
+
+	//Begin decryption
+	for (int i = 0; i < passLen; i++)
+	{
+		passVector.at(i) = passVector.at(i) - 1;
+	}
+
+	//Store result in currentPassword
+	for (int i = 0; i < passLen; i++)
+	{
+		currentPassword.at(i) = passVector.at(i);
+	}
+
+	//Output result
+	cout << "Decrypted password: " << currentPassword << endl << endl;
 }
 
 //Driver
@@ -121,7 +151,3 @@ void main()
 		}
 	}
 }
-
-// TODO
-// 1. Make command checks (line 61) case-insensitive
-// 2. Add more encryption methods
