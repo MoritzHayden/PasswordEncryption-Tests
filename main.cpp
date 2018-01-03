@@ -1,5 +1,6 @@
-#include <iostream>
+﻿#include <iostream>
 #include <string>
+#include <vector>
 using namespace std;
 
 //Global variables
@@ -34,6 +35,19 @@ void getNewPassword()
 void encrypt(string decryptedPassword)
 {
 	int passLen = decryptedPassword.length();
+	vector<int> passVector;
+
+	//Insert password into vector
+	for (int i = 0; i < passLen; i++)
+	{
+		passVector.push_back(decryptedPassword.at(i));
+	}
+
+	//Print password vector
+	for (int i = 0; i < passLen; i++)
+	{
+		cout << passVector.at(i) << endl;
+	}
 
 	cout << "This option isn't available yet." << endl << endl;
 }
