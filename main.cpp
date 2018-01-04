@@ -162,19 +162,54 @@ void main()
 			else if (commandInt == 2)
 			{
 				//Get input for password
-				cout << "Password to decrypt: \t";
-				cin >> passwordToDecrypt;
-				//Decrypt the password
-				decrypt1(passwordToDecrypt);
-			}
-			else
-			{
-				cout << "ERROR: INVALID INPUT" << endl << endl;
-			}
+				cout << "Password to encrypt: \t";
+				cin >> passwordToEncrypt;
+				//Get input for decryption method
+				cout << "-------------------------------------------------" << endl;
+				cout << "// DECRYPTION METHODS //			|" << endl;
+				cout << "1. Decrypt1					|" << endl;
+				cout << "2. Decrypt2					|" << endl;
+				cout << "3. Decrypt3					|" << endl;
+				cout << "-------------------------------------------------" << endl;
+				cout << "Method for Decryption: \t";
+				cin >> decryptionMethod;
+
+				//Check decryption method
+				if (decryptionMethod == 1 || decryptionMethod == 2 || decryptionMethod == 3)
+				{
+					if (decryptionMethod == 1)
+					{
+						//Decrypt the password with Encrypt1
+						decrypt1(passwordToEncrypt);
+					}
+					else if (decryptionMethod == 2)
+					{
+						//Decrypt the password with Encrypt2
+						decrypt2(passwordToEncrypt);
+					}
+					else if (decryptionMethod == 3)
+					{
+						//Decrypt the password with Encrypt3
+						decrypt3(passwordToEncrypt);
+					}
+					else
+					{
+						cout << "ERROR: INVALID INPUT" << endl << endl;
+					}
 				}
 				else
 				{
 					cout << "ERROR: INVALID INPUT" << endl << endl;
 				}
 			}
+			else
+			{
+				cout << "ERROR: INVALID INPUT" << endl << endl;
+			}
 		}
+		else
+		{
+			cout << "ERROR: INVALID INPUT" << endl << endl;
+		}
+	}
+}
