@@ -6,86 +6,84 @@ using namespace std;
 //Global variables
 string command;
 int commandInt = 0;
+int encryptionMethod = 0;
+int decryptionMethod = 0;
 bool done = false;
-string currentPassword;
+string passwordToEncrypt;
+string passwordToDecrypt;
+string encryptedPassword;
+string decryptedPassword;
 
 //Help menu to show commands
 void menu()
 {
 	cout << "-------------------------------------------------" << endl;
 	cout << "// COMMANDS //					|" << endl;
-	cout << "1. Enter a new password to be manipulated.	|" << endl;
-	cout << "2. Display the current password.		|" << endl;
-	cout << "3. Encrypt the current password.		|" << endl;
-	cout << "4. Decrypt the current password.		|" << endl;
+	cout << "1. Encrypt a password.				|" << endl;
+	cout << "2. Decrypt a password.				|" << endl;
 	cout << "EXIT: Exit the program.				|" << endl;
 	cout << "HELP: Display this help menu.			|" << endl;
 	cout << "-------------------------------------------------" << endl << endl;
 }
 
-//Method to get a new password from the user
-void getNewPassword()
+//Method to encrypt password
+void encrypt1(string decryptedPassword)
 {
-	cout << "Please provide a new password to be encrypted: ";
-	cin >> currentPassword;
-	cout << endl;
+	//Encrypt password
+	encryptedPassword = decryptedPassword;
+
+	//Output result
+	cout << "Encrypted password: \t" << encryptedPassword << endl << endl;
 }
 
 //Method to encrypt password
-void encrypt(string decryptedPassword)
+void encrypt2(string decryptedPassword)
 {
-	int passLen = decryptedPassword.length();
-	//Change to vector<char> for ASCII conversion
-	vector<char> passVector;
+	//Encrypt password
+	encryptedPassword = decryptedPassword;
 
-	//Insert password into vector
-	for (int i = 0; i < passLen; i++)
-	{
-		passVector.push_back(decryptedPassword.at(i));
-	}
-
-	//Begin encryption
-	for (int i = 0; i < passLen; i++)
-	{
-		passVector.at(i) = passVector.at(i) + 1;
-	}
-
-	//Store result in currentPassword
-	for (int i = 0; i < passLen; i++)
-	{
-		currentPassword.at(i) = passVector.at(i);
-	}
 	//Output result
-	cout << "Encrypted password: " << currentPassword << endl << endl;
+	cout << "Encrypted password: \t" << encryptedPassword << endl << endl;
+}
+
+//Method to encrypt password
+void encrypt3(string decryptedPassword)
+{
+	//Encrypt password
+	encryptedPassword = decryptedPassword;
+
+	//Output result
+	cout << "Encrypted password: \t" << encryptedPassword << endl << endl;
 }
 
 //Method to decrypt password
-void decrypt(string encryptedPassword)
+void decrypt1(string encryptedPassword)
 {
-	int passLen = encryptedPassword.length();
-	//Change to vector<char> for ASCII conversion
-	vector<char> passVector;
-
-	//Insert password into vector
-	for (int i = 0; i < passLen; i++)
-	{
-		passVector.push_back(encryptedPassword.at(i));
-	}
-
-	//Begin decryption
-	for (int i = 0; i < passLen; i++)
-	{
-		passVector.at(i) = passVector.at(i) - 1;
-	}
-
-	//Store result in currentPassword
-	for (int i = 0; i < passLen; i++)
-	{
-		currentPassword.at(i) = passVector.at(i);
-	}
+	//Decrypt password
+	decryptedPassword = encryptedPassword;
 
 	//Output result
-	cout << "Decrypted password: " << currentPassword << endl << endl;
+	cout << "Decrypted password: \t" << decryptedPassword << endl << endl;
+}
+
+//Method to decrypt password
+void decrypt2(string encryptedPassword)
+{
+	//Decrypt password
+	decryptedPassword = encryptedPassword;
+
+	//Output result
+	cout << "Decrypted password: \t" << decryptedPassword << endl << endl;
+}
+
+//Method to decrypt password
+void decrypt3(string encryptedPassword)
+{
+	//Decrypt password
+	decryptedPassword = encryptedPassword;
+
+	//Output result
+	cout << "Decrypted password: \t" << decryptedPassword << endl << endl;
 }
 
 //Driver
@@ -114,40 +112,69 @@ void main()
 			done = true;
 		}
 		else if (command == "1" || command == "2" || command == "3"
-								|| command == "4" || command == "5")
+			|| command == "4" || command == "5")
 		{
 			//Convert input to int
 			commandInt = stoi(command);
 			if (commandInt == 1)
 			{
-				//Store new password
-				cout << "New password: ";
-				cin >> currentPassword;
-				cout << endl;
+				//Get input for password
+				cout << "Password to encrypt: \t";
+				cin >> passwordToEncrypt;
+				//Get input for encryption method
+				cout << "-------------------------------------------------" << endl;
+				cout << "// ENCRYPTION METHODS //			|" << endl;
+				cout << "1. Encrypt1					|" << endl;
+				cout << "2. Encrypt2					|" << endl;
+				cout << "3. Encrypt3					|" << endl;
+				cout << "-------------------------------------------------" << endl;
+				cout << "Method for encryption: \t";
+				cin >> encryptionMethod;
+
+				//Check encryption method
+				if (encryptionMethod == 1 || encryptionMethod == 2 || encryptionMethod == 3)
+				{
+					if (encryptionMethod == 1)
+					{
+						//Encrypt the password with Encrypt1
+						encrypt1(passwordToEncrypt);
+					}
+					else if (encryptionMethod == 2)
+					{
+						//Encrypt the password with Encrypt2
+						encrypt2(passwordToEncrypt);
+					}
+					else if (encryptionMethod == 3)
+					{
+						//Encrypt the password with Encrypt3
+						encrypt3(passwordToEncrypt);
+					}
+					else
+					{
+						cout << "ERROR: INVALID INPUT" << endl << endl;
+					}
+				}
+				else
+				{
+					cout << "ERROR: INVALID INPUT" << endl << endl;
+				}
 			}
 			else if (commandInt == 2)
 			{
-				//Return current password
-				cout << "Current password: " << currentPassword << endl << endl;
-			}
-			else if (commandInt == 3)
-			{
-				//Encrypt current password
-				encrypt(currentPassword);
-			}
-			else if (commandInt == 4)
-			{
-				//Decrypt current password
-				decrypt(currentPassword);
+				//Get input for password
+				cout << "Password to decrypt: \t";
+				cin >> passwordToDecrypt;
+				//Decrypt the password
+				decrypt1(passwordToDecrypt);
 			}
 			else
 			{
 				cout << "ERROR: INVALID INPUT" << endl << endl;
 			}
+				}
+				else
+				{
+					cout << "ERROR: INVALID INPUT" << endl << endl;
+				}
+			}
 		}
-		else
-		{
-			cout << "ERROR: INVALID INPUT" << endl << endl;
-		}
-	}
-}
