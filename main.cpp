@@ -130,9 +130,6 @@ void main()
 			commandInt = stoi(command);
 			if (commandInt == 1)
 			{
-				//Get input for password
-				cout << "Password to encrypt: \t";
-				cin >> passwordToEncrypt;
 				//Get input for encryption method
 				cout << "-------------------------------------------------" << endl;
 				cout << "// ENCRYPTION METHODS //			|" << endl;
@@ -142,6 +139,9 @@ void main()
 				cout << "-------------------------------------------------" << endl;
 				cout << "Method for encryption: \t";
 				cin >> encryptionMethod;
+				//Get input for password
+				cout << "Password to encrypt: \t";
+				cin >> passwordToEncrypt;
 
 				//Check encryption method
 				if (encryptionMethod == 1 || encryptionMethod == 2 || encryptionMethod == 3)
@@ -173,9 +173,6 @@ void main()
 			}
 			else if (commandInt == 2)
 			{
-				//Get input for password
-				cout << "Password to encrypt: \t";
-				cin >> passwordToEncrypt;
 				//Get input for decryption method
 				cout << "-------------------------------------------------" << endl;
 				cout << "// DECRYPTION METHODS //			|" << endl;
@@ -185,6 +182,9 @@ void main()
 				cout << "-------------------------------------------------" << endl;
 				cout << "Method for Decryption: \t";
 				cin >> decryptionMethod;
+				//Get input for password
+				cout << "Password to decrypt: \t";
+				cin >> passwordToEncrypt;
 
 				//Check decryption method
 				if (decryptionMethod == 1 || decryptionMethod == 2 || decryptionMethod == 3)
