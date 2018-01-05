@@ -1,4 +1,16 @@
-﻿#include <iostream>
+﻿/*
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+*	This program includes a user menu that provides commands	*
+*	to the user that allows them to encrypt and decrypt any		*
+*	password or key using a method of their choosing.			*
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+*
+*	Author: Hayden Moritz
+*	Date: 1/5/2018
+*/
+
+
+#include <iostream>
 #include <string>
 #include <vector>
 using namespace std;
