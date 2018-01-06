@@ -18,8 +18,10 @@ using namespace std;
 //Global variables
 string command;
 int commandInt = 0;
-int encryptionMethod = 0;
-int decryptionMethod = 0;
+string encryptionMethod;
+string decryptionMethod;
+int encryptInt = 0;
+int decryptInt = 0;
 bool done = false;
 string passwordToEncrypt;
 string passwordToDecrypt;
@@ -139,25 +141,33 @@ void main()
 				cout << "-------------------------------------------------" << endl;
 				cout << "Method for encryption: \t";
 				cin >> encryptionMethod;
-				//Get input for password
-				cout << "Password to encrypt: \t";
-				cin >> passwordToEncrypt;
-
+				
 				//Check encryption method
-				if (encryptionMethod == 1 || encryptionMethod == 2 || encryptionMethod == 3)
+				if (encryptionMethod == "1" || encryptionMethod == "2" || encryptionMethod == "3")
 				{
-					if (encryptionMethod == 1)
+					encryptInt = stoi(encryptionMethod);
+
+					if (encryptInt == 1)
 					{
+						//Get input for password
+						cout << "Password to encrypt: \t";
+						cin >> passwordToEncrypt;
 						//Encrypt the password with Encrypt1
 						encrypt1(passwordToEncrypt);
 					}
-					else if (encryptionMethod == 2)
+					else if (encryptInt == 2)
 					{
+						//Get input for password
+						cout << "Password to encrypt: \t";
+						cin >> passwordToEncrypt;
 						//Encrypt the password with Encrypt2
 						encrypt2(passwordToEncrypt);
 					}
-					else if (encryptionMethod == 3)
+					else if (encryptInt == 3)
 					{
+						//Get input for password
+						cout << "Password to encrypt: \t";
+						cin >> passwordToEncrypt;
 						//Encrypt the password with Encrypt3
 						encrypt3(passwordToEncrypt);
 					}
@@ -182,27 +192,34 @@ void main()
 				cout << "-------------------------------------------------" << endl;
 				cout << "Method for Decryption: \t";
 				cin >> decryptionMethod;
-				//Get input for password
-				cout << "Password to decrypt: \t";
-				cin >> passwordToEncrypt;
 
-				//Check decryption method
-				if (decryptionMethod == 1 || decryptionMethod == 2 || decryptionMethod == 3)
+				if (decryptionMethod == "1" || decryptionMethod == "2" || decryptionMethod == "3")
 				{
-					if (decryptionMethod == 1)
+					decryptInt = stoi(decryptionMethod);
+
+					if (decryptInt == 1)
 					{
+						//Get input for password
+						cout << "Password to decrypt: \t";
+						cin >> passwordToDecrypt;
 						//Decrypt the password with Encrypt1
-						decrypt1(passwordToEncrypt);
+						decrypt1(passwordToDecrypt);
 					}
-					else if (decryptionMethod == 2)
+					else if (decryptInt == 2)
 					{
+						//Get input for password
+						cout << "Password to decrypt: \t";
+						cin >> passwordToDecrypt;
 						//Decrypt the password with Encrypt2
-						decrypt2(passwordToEncrypt);
+						decrypt2(passwordToDecrypt);
 					}
-					else if (decryptionMethod == 3)
+					else if (decryptInt == 3)
 					{
+						//Get input for password
+						cout << "Password to decrypt: \t";
+						cin >> passwordToDecrypt;
 						//Decrypt the password with Encrypt3
-						decrypt3(passwordToEncrypt);
+						decrypt3(passwordToDecrypt);
 					}
 					else
 					{
