@@ -40,17 +40,41 @@ void menu()
 	cout << "-------------------------------------------------" << endl << endl;
 }
 
-//Method to encrypt password
+//Method 1 to encrypt password
+//A.K.A. Scrambled Table Algoritm (STA)
 void encrypt1(string decryptedPassword)
 {
+	int count = 0;
+	char passArr [8][4];
 	//Encrypt password
-	encryptedPassword = decryptedPassword;
+	for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 8; j++)
+		{
+			passArr[i][j] = decryptedPassword.at(0);
+		}
+	}
 
 	//Output result
-	cout << "Encrypted password: \t" << encryptedPassword << endl << endl;
+	cout << "Encrypted password: \n";
+	for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 8; j++)
+		{
+			cout << passArr[i][j] << " ";
+			count++;
+			
+			if (count == 8 || count == 16 || count == 24 || count == 32)
+			{
+				cout << endl;
+			}
+		}
+	}
+	
+	cout << endl;
 }
 
-//Method to encrypt password
+//Method 2 to encrypt password
 void encrypt2(string decryptedPassword)
 {
 	//Encrypt password
@@ -60,7 +84,7 @@ void encrypt2(string decryptedPassword)
 	cout << "Encrypted password: \t" << encryptedPassword << endl << endl;
 }
 
-//Method to encrypt password
+//Method 3 to encrypt password
 void encrypt3(string decryptedPassword)
 {
 	//Encrypt password
@@ -70,7 +94,7 @@ void encrypt3(string decryptedPassword)
 	cout << "Encrypted password: \t" << encryptedPassword << endl << endl;
 }
 
-//Method to decrypt password
+//Method 1 to decrypt password
 void decrypt1(string encryptedPassword)
 {
 	//Decrypt password
@@ -80,7 +104,7 @@ void decrypt1(string encryptedPassword)
 	cout << "Decrypted password: \t" << decryptedPassword << endl << endl;
 }
 
-//Method to decrypt password
+//Method 2 to decrypt password
 void decrypt2(string encryptedPassword)
 {
 	//Decrypt password
@@ -90,7 +114,7 @@ void decrypt2(string encryptedPassword)
 	cout << "Decrypted password: \t" << decryptedPassword << endl << endl;
 }
 
-//Method to decrypt password
+//Method 3 to decrypt password
 void decrypt3(string encryptedPassword)
 {
 	//Decrypt password
@@ -135,7 +159,7 @@ void main()
 				//Get input for encryption method
 				cout << "-------------------------------------------------" << endl;
 				cout << "// ENCRYPTION METHODS //			|" << endl;
-				cout << "1. Encrypt1					|" << endl;
+				cout << "1. Scrambled Table Algoritm (STA)		|" << endl;
 				cout << "2. Encrypt2					|" << endl;
 				cout << "3. Encrypt3					|" << endl;
 				cout << "-------------------------------------------------" << endl;
