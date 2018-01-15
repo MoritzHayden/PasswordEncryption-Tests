@@ -16,17 +16,15 @@
 using namespace std;
 
 //Global variables
-string command;
+string lastPass = "";
+string lastHash = "";
+string command = "";
 int commandInt = 0;
-string encryptionMethod;
-string decryptionMethod;
 int encryptInt = 0;
-int decryptInt = 0;
+string encryptionMethod = "";
 bool done = false;
-string passwordToEncrypt;
-string passwordToDecrypt;
-string encryptedPassword;
-string decryptedPassword;
+string passwordToEncrypt = "";
+string encryptedPassword = "";
 
 //Help menu to show commands
 void menu()
@@ -34,7 +32,7 @@ void menu()
 	cout << "-------------------------------------------------" << endl;
 	cout << "// COMMANDS //					|" << endl;
 	cout << "1. Encrypt a password.				|" << endl;
-	cout << "2. Decrypt a password.				|" << endl;
+	cout << "2. View the last password and its hash.		|" << endl;
 	cout << "EXIT: Exit the program.				|" << endl;
 	cout << "HELP: Display this help menu.			|" << endl;
 	cout << "-------------------------------------------------" << endl << endl;
@@ -44,24 +42,93 @@ void menu()
 //A.K.A. Scrambled Table Algoritm (STA)
 void encrypt1(string decryptedPassword)
 {
+	int passLen = decryptedPassword.length();
 	int count = 0;
 	char passArr [8][4];
-	//Encrypt password
-	for (int i = 0; i < 4; i++)
+	if (passLen < 8)
 	{
-		for (int j = 0; j < 8; j++)
+		//Enumerate string
+		if (passLen == 7)
 		{
-			passArr[i][j] = decryptedPassword.at(0);
+			decryptedPassword.push_back('0');
+		}
+		else if (passLen == 6)
+		{
+			decryptedPassword.push_back('0');
+			decryptedPassword.push_back('0');
+		}
+		else if (passLen == 5)
+		{
+			decryptedPassword.push_back('0');
+			decryptedPassword.push_back('0');
+			decryptedPassword.push_back('0');
+		}
+		else if (passLen == 4)
+		{
+			decryptedPassword.push_back('0');
+			decryptedPassword.push_back('0');
+			decryptedPassword.push_back('0');
+			decryptedPassword.push_back('0');
+		}
+		else if (passLen == 3)
+		{
+			decryptedPassword.push_back('0');
+			decryptedPassword.push_back('0');
+			decryptedPassword.push_back('0');
+			decryptedPassword.push_back('0');
+			decryptedPassword.push_back('0');
+		}
+		else if (passLen == 2)
+		{
+			decryptedPassword.push_back('0');
+			decryptedPassword.push_back('0');
+			decryptedPassword.push_back('0');
+			decryptedPassword.push_back('0');
+			decryptedPassword.push_back('0');
+			decryptedPassword.push_back('0');
+		}
+		else if (passLen == 1)
+		{
+			decryptedPassword.push_back('0');
+			decryptedPassword.push_back('0');
+			decryptedPassword.push_back('0');
+			decryptedPassword.push_back('0');
+			decryptedPassword.push_back('0');
+			decryptedPassword.push_back('0');
+			decryptedPassword.push_back('0');
+		}
+		else
+		{
+			decryptedPassword.push_back('0');
+			decryptedPassword.push_back('0');
+			decryptedPassword.push_back('0');
+			decryptedPassword.push_back('0');
+			decryptedPassword.push_back('0');
+			decryptedPassword.push_back('0');
+			decryptedPassword.push_back('0');
+			decryptedPassword.push_back('0');
+		}
+	}
+	else
+	{
+		//Do nothing
+	}
+	//Encrypt password
+	for (int i = 0; i < 8; i++)
+	{
+		for (int j = 0; j < 4; j++)
+		{
+			passArr[i][j] = decryptedPassword.at(j);
 		}
 	}
 
 	//Output result
 	cout << "Encrypted password: \n";
-	for (int i = 0; i < 4; i++)
+	for (int l = 0; l < 8; l++)
 	{
-		for (int j = 0; j < 8; j++)
+		for (int k = 0; k < 4; k++)
 		{
-			cout << passArr[i][j] << " ";
+			cout << passArr[l][k] << " ";
 			count++;
 			
 			if (count == 8 || count == 16 || count == 24 || count == 32)
@@ -71,6 +138,9 @@ void encrypt1(string decryptedPassword)
 		}
 	}
 	
+	//	TODO:
+	//	Assign lastHash here
+
 	cout << endl;
 }
 
@@ -82,6 +152,9 @@ void encrypt2(string decryptedPassword)
 
 	//Output result
 	cout << "Encrypted password: \t" << encryptedPassword << endl << endl;
+
+	//	TODO:
+	//	Assign lastHash here
 }
 
 //Method 3 to encrypt password
@@ -92,36 +165,9 @@ void encrypt3(string decryptedPassword)
 
 	//Output result
 	cout << "Encrypted password: \t" << encryptedPassword << endl << endl;
-}
 
-//Method 1 to decrypt password
-void decrypt1(string encryptedPassword)
-{
-	//Decrypt password
-	decryptedPassword = encryptedPassword;
-
-	//Output result
-	cout << "Decrypted password: \t" << decryptedPassword << endl << endl;
-}
-
-//Method 2 to decrypt password
-void decrypt2(string encryptedPassword)
-{
-	//Decrypt password
-	decryptedPassword = encryptedPassword;
-
-	//Output result
-	cout << "Decrypted password: \t" << decryptedPassword << endl << endl;
-}
-
-//Method 3 to decrypt password
-void decrypt3(string encryptedPassword)
-{
-	//Decrypt password
-	decryptedPassword = encryptedPassword;
-
-	//Output result
-	cout << "Decrypted password: \t" << decryptedPassword << endl << endl;
+	//	TODO:
+	//	Assign lastHash here
 }
 
 //Driver
@@ -176,6 +222,7 @@ void main()
 						//Get input for password
 						cout << "Password to encrypt: \t";
 						cin >> passwordToEncrypt;
+						lastPass = passwordToEncrypt;
 						//Encrypt the password with Encrypt1
 						encrypt1(passwordToEncrypt);
 					}
@@ -184,6 +231,7 @@ void main()
 						//Get input for password
 						cout << "Password to encrypt: \t";
 						cin >> passwordToEncrypt;
+						lastPass = passwordToEncrypt;
 						//Encrypt the password with Encrypt2
 						encrypt2(passwordToEncrypt);
 					}
@@ -192,6 +240,7 @@ void main()
 						//Get input for password
 						cout << "Password to encrypt: \t";
 						cin >> passwordToEncrypt;
+						lastPass = passwordToEncrypt;
 						//Encrypt the password with Encrypt3
 						encrypt3(passwordToEncrypt);
 					}
@@ -207,53 +256,8 @@ void main()
 			}
 			else if (commandInt == 2)
 			{
-				//Get input for decryption method
-				cout << "-------------------------------------------------" << endl;
-				cout << "// DECRYPTION METHODS //			|" << endl;
-				cout << "1. Decrypt1					|" << endl;
-				cout << "2. Decrypt2					|" << endl;
-				cout << "3. Decrypt3					|" << endl;
-				cout << "-------------------------------------------------" << endl;
-				cout << "Method for Decryption: \t";
-				cin >> decryptionMethod;
-
-				if (decryptionMethod == "1" || decryptionMethod == "2" || decryptionMethod == "3")
-				{
-					decryptInt = stoi(decryptionMethod);
-
-					if (decryptInt == 1)
-					{
-						//Get input for password
-						cout << "Password to decrypt: \t";
-						cin >> passwordToDecrypt;
-						//Decrypt the password with Encrypt1
-						decrypt1(passwordToDecrypt);
-					}
-					else if (decryptInt == 2)
-					{
-						//Get input for password
-						cout << "Password to decrypt: \t";
-						cin >> passwordToDecrypt;
-						//Decrypt the password with Encrypt2
-						decrypt2(passwordToDecrypt);
-					}
-					else if (decryptInt == 3)
-					{
-						//Get input for password
-						cout << "Password to decrypt: \t";
-						cin >> passwordToDecrypt;
-						//Decrypt the password with Encrypt3
-						decrypt3(passwordToDecrypt);
-					}
-					else
-					{
-						cout << "ERROR: INVALID INPUT" << endl << endl;
-					}
-				}
-				else
-				{
-					cout << "ERROR: INVALID INPUT" << endl << endl;
-				}
+				cout << "The last password was:	" << lastPass << endl;
+				cout << "And its hash was:	" << lastHash << endl << endl;
 			}
 			else
 			{
