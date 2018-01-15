@@ -1,6 +1,7 @@
 # PasswordEncryption-Tests
-This program will test a variety of password h techniques.
+This program will test a variety of password hashing techniques.
 
+-----------------------------------------
 
 // COMMANDS //
 1. Encrypt a password.
