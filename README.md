@@ -20,7 +20,7 @@ HELP: Display this help menu.
 
 -----------------------------------------
 
-Hash: Scrambled Table Algorithm (STA)
+Hash1 : Scrambled Table Algorithm (STA)
 
 *Will be able to deploy to indefinite length when completed*
 
@@ -74,13 +74,13 @@ And the result is our hash.
 
 -----------------------------------------
 
-Hash: Encrypt2
+Hash 2: Encrypt2
 
 *This hash function is not complete yet*
 
 -----------------------------------------
 
-Hash: Encrypt3
+Hash 3: Encrypt3
 
 *This hash function is not complete yet*
 
