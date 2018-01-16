@@ -1,12 +1,12 @@
 ﻿/*
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 *	This program includes a user menu that provides commands	*
-*	to the user that allows them to encrypt and decrypt any		*
-*	password or key using a method of their choosing.			*
+*	to the user that allows them to encrypt any	password using	*
+*	a method of their choosing.									*
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 *
 *	Author: Hayden Moritz
-*	Date: 1/5/2018
+*	Date: 1/15/2018
 */
 
 
@@ -42,9 +42,12 @@ void menu()
 //A.K.A. Scrambled Table Algoritm (STA)
 void encrypt1(string decryptedPassword)
 {
+	int spot = 0;
 	int passLen = decryptedPassword.length();
 	int count = 0;
 	char passArr [8][4];
+	char PassArr1D [32];
+	/*
 	if (passLen < 8)
 	{
 		//Enumerate string
@@ -113,20 +116,50 @@ void encrypt1(string decryptedPassword)
 	{
 		//Do nothing
 	}
+	*/
+
 	//Encrypt password
-	for (int i = 0; i < 8; i++)
+	//Store in 2D array
+	/*
+		TODO:
+		Handle length > 8 case
+	*/
+	for (int i = 0; i < 4; i++)
 	{
-		for (int j = 0; j < 4; j++)
+		for (int j = 0; j < 8; j++)
 		{
-			passArr[i][j] = decryptedPassword.at(j);
+			if (spot == decryptedPassword.length())
+			{
+				spot = 0;
+				passArr[i][j] = decryptedPassword.at(0);
+			}
+			else
+			{
+				passArr[i][j] = decryptedPassword.at(spot);
+
+			}
+			cout << passArr[i][j] << " ";
+			spot++;
+			count++;
+		}
+		cout << endl;
+	}
+
+	//Convert 2D array to 1D column by column
+	for (int k = 0; k < 8; k++)
+	{
+		for (int l = 0; l < 4; l++)
+		{
+			
 		}
 	}
 
 	//Output result
+	/*
 	cout << "Encrypted password: \n";
-	for (int l = 0; l < 8; l++)
+	for (int l = 0; l < 4; l++)
 	{
-		for (int k = 0; k < 4; k++)
+		for (int k = 0; k < 8; k++)
 		{
 			cout << passArr[l][k] << " ";
 			count++;
@@ -137,11 +170,13 @@ void encrypt1(string decryptedPassword)
 			}
 		}
 	}
+	*/
 	
 	//	TODO:
 	//	Assign lastHash here
 
 	cout << endl;
+
 }
 
 //Method 2 to encrypt password
@@ -174,7 +209,7 @@ void encrypt3(string decryptedPassword)
 void main()
 {
 	//Initiate program
-	cout << "This program can encrypt and decrypt passwords." << endl;
+	cout << "This program can encrypt your passwords." << endl;
 	menu();
 
 	//Test for the exit case
