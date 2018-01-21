@@ -124,6 +124,7 @@ void encrypt1(string decryptedPassword)
 		TODO:
 		Handle length > 8 case
 	*/
+	cout << endl << "2D Array:" << endl;
 	for (int i = 0; i < 4; i++)
 	{
 		for (int j = 0; j < 8; j++)
@@ -136,7 +137,6 @@ void encrypt1(string decryptedPassword)
 			else
 			{
 				passArr[i][j] = decryptedPassword.at(spot);
-
 			}
 			cout << passArr[i][j] << " ";
 			spot++;
@@ -146,37 +146,33 @@ void encrypt1(string decryptedPassword)
 	}
 
 	//Convert 2D array to 1D column by column
-	for (int k = 0; k < 8; k++)
+	int row = 0;
+	int col = 0;
+	for (int l = 0; l < 32; l++)
 	{
-		for (int l = 0; l < 4; l++)
-		{
-			
-		}
-	}
+		PassArr1D[l] = passArr[row][col];
+		row++;
 
-	//Output result
-	/*
-	cout << "Encrypted password: \n";
-	for (int l = 0; l < 4; l++)
-	{
-		for (int k = 0; k < 8; k++)
+		if (row == 4)
 		{
-			cout << passArr[l][k] << " ";
-			count++;
-			
-			if (count == 8 || count == 16 || count == 24 || count == 32)
-			{
-				cout << endl;
-			}
+			row = 0;
+			col++;
 		}
 	}
-	*/
+	
+	cout << endl;
+
+	//Print 1D array
+	cout << "1D Array:" << endl;
+	for (int m = 0; m < 32; m++)
+	{
+		cout << PassArr1D[m] << " ";
+	}
 	
 	//	TODO:
 	//	Assign lastHash here
 
 	cout << endl;
-
 }
 
 //Method 2 to encrypt password
