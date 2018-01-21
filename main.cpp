@@ -47,83 +47,9 @@ void encrypt1(string decryptedPassword)
 	int count = 0;
 	char passArr [8][4];
 	char PassArr1D [32];
-	/*
-	if (passLen < 8)
-	{
-		//Enumerate string
-		if (passLen == 7)
-		{
-			decryptedPassword.push_back('0');
-		}
-		else if (passLen == 6)
-		{
-			decryptedPassword.push_back('0');
-			decryptedPassword.push_back('0');
-		}
-		else if (passLen == 5)
-		{
-			decryptedPassword.push_back('0');
-			decryptedPassword.push_back('0');
-			decryptedPassword.push_back('0');
-		}
-		else if (passLen == 4)
-		{
-			decryptedPassword.push_back('0');
-			decryptedPassword.push_back('0');
-			decryptedPassword.push_back('0');
-			decryptedPassword.push_back('0');
-		}
-		else if (passLen == 3)
-		{
-			decryptedPassword.push_back('0');
-			decryptedPassword.push_back('0');
-			decryptedPassword.push_back('0');
-			decryptedPassword.push_back('0');
-			decryptedPassword.push_back('0');
-		}
-		else if (passLen == 2)
-		{
-			decryptedPassword.push_back('0');
-			decryptedPassword.push_back('0');
-			decryptedPassword.push_back('0');
-			decryptedPassword.push_back('0');
-			decryptedPassword.push_back('0');
-			decryptedPassword.push_back('0');
-		}
-		else if (passLen == 1)
-		{
-			decryptedPassword.push_back('0');
-			decryptedPassword.push_back('0');
-			decryptedPassword.push_back('0');
-			decryptedPassword.push_back('0');
-			decryptedPassword.push_back('0');
-			decryptedPassword.push_back('0');
-			decryptedPassword.push_back('0');
-		}
-		else
-		{
-			decryptedPassword.push_back('0');
-			decryptedPassword.push_back('0');
-			decryptedPassword.push_back('0');
-			decryptedPassword.push_back('0');
-			decryptedPassword.push_back('0');
-			decryptedPassword.push_back('0');
-			decryptedPassword.push_back('0');
-			decryptedPassword.push_back('0');
-		}
-	}
-	else
-	{
-		//Do nothing
-	}
-	*/
 
-	//Encrypt password
+	//Encrypt password:
 	//Store in 2D array
-	/*
-		TODO:
-		Handle length > 8 case
-	*/
 	cout << endl << "2D Array:" << endl;
 	for (int i = 0; i < 4; i++)
 	{
@@ -148,17 +74,37 @@ void encrypt1(string decryptedPassword)
 	//Convert 2D array to 1D column by column
 	int row = 0;
 	int col = 0;
+	int countReset = 0;
 	for (int l = 0; l < 32; l++)
 	{
-		PassArr1D[l] = passArr[row][col];
-		row++;
-
-		if (row == 4)
+		if (row == 0 && (countReset != 8))
 		{
-			row = 0;
 			col++;
 		}
+
+		PassArr1D[l] = passArr[row][col];
+		row++;
+		if (row == 4)
+		{
+			countReset++;
+			row = 0;
+		}
+		
 	}
+
+	/*
+	DELETE THIS!
+	for (int a = 0; a < 32; a++)
+	{
+		for (int b = 0; b < 8; b++)
+		{
+			for (int c = 0; c < 4; c++)
+			{
+				PassArr1D[a] = passArr[c][b];
+			}
+		}
+	}
+	*/
 	
 	cout << endl;
 
@@ -166,9 +112,23 @@ void encrypt1(string decryptedPassword)
 	cout << "1D Array:" << endl;
 	for (int m = 0; m < 32; m++)
 	{
+		//REMOVE WITH NUMBERLINE
+		if (m > 9)
+		{
+			cout << " ";
+		}
 		cout << PassArr1D[m] << " ";
 	}
-	
+
+	//REMOVE:
+	//Print numberline for reference
+	cout << "\n";
+	for (int m = 0; m < 32; m++)
+	{
+		cout << m << " ";
+	}
+	cout << endl << endl << "Times 'row' was reset: " << countReset << endl;
+
 	//	TODO:
 	//	Assign lastHash here
 
