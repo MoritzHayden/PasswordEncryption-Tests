@@ -159,17 +159,28 @@ void encrypt1(string decryptedPassword)
 		{
 			temp = temp + 32;
 		}
-		intPassVector.push_back(temp - 96);
 
-		if (intPassVector.at(z) > 9)
+		intPassVector.push_back(temp - 96);
+	}
+
+	//Replace two digits with each digit
+	for (int e = 0; e < 32; e++)
+	{
+		if (intPassVector.at(e) > 9)
 		{
-			if (intPassVector.at(z) < 20)
+			if (intPassVector.at(e) < 20)
 			{
-				intPassVector.push_back(intPassVector.at(z) % 10);
+				//TODO:
+				//Delete element (begin+e)-1 and replace with either 1 or 2
+				intPassVector.erase(intPassVector.begin()+e);
+				intPassVector.insert(intPassVector.begin()+e, (intPassVector.at(e) % 10));
 			}
-			else if (intPassVector.at(z) < 30 && intPassVector.at(z) >= 20)
+			else if (intPassVector.at(e) < 30 && intPassVector.at(e) >= 20)
 			{
-				intPassVector.push_back(intPassVector.at(z) % 20);
+				//TODO:
+				//Delete element (begin+e)-1 and replace with either 1 or 2
+				intPassVector.erase(intPassVector.begin() + e);
+				intPassVector.insert(intPassVector.begin() + e, (intPassVector.at(e) % 20));
 			}
 		}
 	}
@@ -182,8 +193,6 @@ void encrypt1(string decryptedPassword)
 		cout << intPassVector.at(k) << " ";
 	}
 	cout << endl << endl;
-
-	cout << 10 % 15 << endl << endl;
 
 	//Add adjacent digits
 
