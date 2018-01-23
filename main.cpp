@@ -71,6 +71,8 @@ void encrypt1(string decryptedPassword)
 		cout << endl;
 	}
 
+	/*
+	//DELETE THIS
 	//Convert 2D array to 1D column by column
 	int row = 0;
 	int col = 0;
@@ -89,22 +91,35 @@ void encrypt1(string decryptedPassword)
 			countReset++;
 			row = 0;
 		}
-		
-	}
-
-	/*
-	DELETE THIS!
-	for (int a = 0; a < 32; a++)
-	{
-		for (int b = 0; b < 8; b++)
-		{
-			for (int c = 0; c < 4; c++)
-			{
-				PassArr1D[a] = passArr[c][b];
-			}
-		}
 	}
 	*/
+
+	//NOT DONE
+	int countReset = 0;
+	int x = 0;
+	int y = 0;
+	for (int a = 0; a < 32; a++)
+	{
+		PassArr1D[a] = passArr[y][x];
+
+		if (x == 8)
+		{
+			x=0;
+		}
+		else
+		{
+			x++;
+		}
+
+		if (a % 4 == 0)
+		{
+			y++;
+		}
+		else
+		{
+			y = 0;
+		}
+	}
 	
 	cout << endl;
 
@@ -127,12 +142,54 @@ void encrypt1(string decryptedPassword)
 	{
 		cout << m << " ";
 	}
+	//DELETE THIS
 	cout << endl << endl << "Times 'row' was reset: " << countReset << endl;
+
+	cout << endl;
+
+	//Convert 1D array to vector of corresponding number values
+	vector<int> intPassVector;
+	int temp = 0;
+	for (int z = 0; z < 32; z++)
+	{
+		//Get numerical value of letters, ignoring caps
+		temp = PassArr1D[z];
+
+		if (temp < 97)
+		{
+			temp = temp + 32;
+		}
+		intPassVector.push_back(temp - 96);
+
+		if (intPassVector.at(z) > 9)
+		{
+			if (intPassVector.at(z) < 20)
+			{
+				intPassVector.push_back(intPassVector.at(z) % 10);
+			}
+			else if (intPassVector.at(z) < 30 && intPassVector.at(z) >= 20)
+			{
+				intPassVector.push_back(intPassVector.at(z) % 20);
+			}
+		}
+	}
+
+	//DELETE
+	//Print full vector
+	cout << "Vector: ";
+	for (int k = 0; k < intPassVector.size(); k++)
+	{
+		cout << intPassVector.at(k) << " ";
+	}
+	cout << endl << endl;
+
+	cout << 10 % 15 << endl << endl;
+
+	//Add adjacent digits
+
 
 	//	TODO:
 	//	Assign lastHash here
-
-	cout << endl;
 }
 
 //Method 2 to encrypt password
